@@ -1,5 +1,6 @@
 package com.mpcoding.mysamplecomposeapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,8 +9,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -32,10 +35,8 @@ class MainActivity : ComponentActivity() {
                     .fillMaxSize()
                     .background(color = Color(0xFFF2F2f2))
             ) {
-                Box {
-                    MyRecyclerView()
-                    MyImageView()
-                }
+                 MyImageView()
+                MyRecyclerView()
             }
         }
     }
@@ -46,7 +47,7 @@ class MainActivity : ComponentActivity() {
             painterResource(
                 id = R.drawable.food
             ), modifier = Modifier
-                .height(200.dp)
+                .height(150.dp)
                 .padding(10.dp),
             contentDescription = "",
             contentScale = ContentScale.Crop
@@ -67,6 +68,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 private fun MyRecyclerView() {
     Scaffold(content = {
@@ -81,19 +83,24 @@ fun MyRecyclerViewContent() {
         items(
             items = recyclerviewList,
             itemContent = {
-                RecyclerViewItem(item = it)
+                RecyclerViewItem(item = it) {
+                }
             })
     }
 }
 
+
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun RecyclerViewItem(item: MySampleModel) {
+fun RecyclerViewItem(item: MySampleModel, link: () -> Unit) {
     Row {
-        Column {
-
-            Text(text = item.name, style = typography.h6)
-            Text(text = "VIEW DETAIL", style = typography.caption)
+        Surface(onClick = {
+            link()
+        }) {
+            Column {
+                Text(text = item.name, style = typography.h6)
+                Text(text = "VIEW DETAIL", style = typography.caption)
+            }
         }
-
     }
 }
