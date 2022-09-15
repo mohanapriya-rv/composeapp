@@ -12,6 +12,10 @@ private val DarkColorPalette = darkColors(
     secondary = Teal200
 )
 
+private val myColorPalette = lightColors(
+    primary = toolBarColor,
+)
+
 private val LightColorPalette = lightColors(
     primary = Purple500,
     primaryVariant = Purple700,

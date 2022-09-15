@@ -16,6 +16,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -23,21 +24,29 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mpcoding.mysamplecomposeapp.data.DataProvider
 import com.mpcoding.mysamplecomposeapp.data.MySampleModel
+import com.mpcoding.mysamplecomposeapp.model.Screen
+import com.mpcoding.mysamplecomposeapp.ui.navigation.Navigation
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(color = Color(0xFFF2F2f2))
-            ) {
-                 MyImageView()
-                MyRecyclerView()
-            }
+            Navigation()
+        }
+    }
+
+    @Composable
+    fun MainScreen(navController: NavController) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = Color(0xFFF2F2f2))
+        ) {
+            MyImageView()
+            MyRecyclerView(navController)
         }
     }
 
@@ -66,41 +75,58 @@ class MainActivity : ComponentActivity() {
 
         }
     }
-}
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-@Composable
-private fun MyRecyclerView() {
-    Scaffold(content = {
-        MyRecyclerViewContent()
-    })
-}
-
-@Composable
-fun MyRecyclerViewContent() {
-    val recyclerviewList = remember { DataProvider.list }
-    LazyColumn(contentPadding = PaddingValues(horizontal = 10.dp, vertical = 8.dp)) {
-        items(
-            items = recyclerviewList,
-            itemContent = {
-                RecyclerViewItem(item = it) {
-                }
-            })
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+    @Composable
+    private fun MyRecyclerView(navController: NavController) {
+        Scaffold(content = {
+            MyRecyclerViewContent(navController)
+        })
     }
-}
+
+    @Composable
+    fun MyRecyclerViewContent(navController: NavController) {
+        val recyclerviewList = remember { DataProvider.list }
+        LazyColumn(contentPadding = PaddingValues(horizontal = 10.dp, vertical = 8.dp)) {
+            items(
+                items = recyclerviewList,
+                itemContent = {
+                    RecyclerViewItem(item = it) {
+                        navController.navigate(Screen.DetailScreen.route)
+                    }
+                })
+        }
+    }
 
 
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun RecyclerViewItem(item: MySampleModel, link: () -> Unit) {
-    Row {
-        Surface(onClick = {
-            link()
-        }) {
-            Column {
-                Text(text = item.name, style = typography.h6)
-                Text(text = "VIEW DETAIL", style = typography.caption)
+    @OptIn(ExperimentalMaterialApi::class)
+    @Composable
+    fun RecyclerViewItem(item: MySampleModel, link: () -> Unit) {
+        Row {
+            Surface(onClick = {
+                link()
+            }) {
+                Column {
+                    Text(text = item.name, style = typography.h6)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "VIEW DETAIL",
+                        style = typography.caption,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
             }
         }
     }
+
+
+    @Composable
+    fun DetailScreen(name: String?) {
+        Column {
+            Text(text = "Hello")
+            Text(text = "welcome to Android")
+        }
+    }
+
 }
