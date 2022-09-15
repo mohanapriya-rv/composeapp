@@ -6,6 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -121,11 +123,34 @@ class MainActivity : ComponentActivity() {
     }
 
 
+    /**
+     * verticall arangement
+     * horizontal alignment
+     */
     @Composable
     fun DetailScreen(name: String?) {
-        Column {
-            Text(text = "Hello")
-            Text(text = "welcome to Android")
+        Box(Modifier.padding(20.dp)) {
+            Column(
+                modifier = Modifier
+                    .background(Color.Green)
+                    .width(300.dp)
+                    .border(5.dp, Color.DarkGray)
+                    .padding(5.dp),
+//                    .border(5.dp, Color.Magenta)
+//                    .padding(5.dp)
+//                    .border(5.dp, Color.Blue)
+//                    .padding(5.dp)
+//                    .height(200.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+//            Text(text = "Hello", modifier = Modifier.offset(0.dp,20.dp))
+//            // spacer allocates space
+//            Text(text = "welcome to Android",modifier = Modifier.offset(0.dp,20.dp) )
+                Text(text = "Hello", Modifier.clickable {})
+                Spacer(Modifier.height(50.dp))
+                Text(text = "welcome to Android")
+            }
         }
     }
 
