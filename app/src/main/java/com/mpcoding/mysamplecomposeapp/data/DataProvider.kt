@@ -1,14 +1,18 @@
 package com.mpcoding.mysamplecomposeapp.data
 
+/**
+ * created by Mohanapriya R on 19-08-2022
+ */
+
 object DataProvider {
     val list = listOf(
         MySampleModel(
-            "sampleString1",
+            "FontStyling",
             1,
             "https://cdn.fundsindia.com/prelogin/mf-home-header-icon.png"
         ),
         MySampleModel(
-            "sampleString2",
+            "ComposeState",
             2,
             "https://cdn.fundsindia.com/prelogin/mf-home-header-icon.png"
         ),
