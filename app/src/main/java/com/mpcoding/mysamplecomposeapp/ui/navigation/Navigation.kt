@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.mpcoding.mysamplecomposeapp.model.Screen
 import com.mpcoding.mysamplecomposeapp.scene.MPComposeStatesScreen
+import com.mpcoding.mysamplecomposeapp.scene.MPConstraintLayoutScreen
 import com.mpcoding.mysamplecomposeapp.scene.MPListScreen
 import com.mpcoding.mysamplecomposeapp.scene.MPTextStylesScreen
 
@@ -15,7 +16,6 @@ import com.mpcoding.mysamplecomposeapp.scene.MPTextStylesScreen
 fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.ListScreen.route) {
-
 
         composable(route = Screen.ListScreen.route) {
             MPListScreen(navController = navController)
@@ -39,6 +39,13 @@ fun Navigation() {
 
         composable(route = Screen.StateDetailScreen.route) {
             MPComposeStatesScreen()
+        }
+
+        /**
+         * for constraint layout
+         */
+        composable(route = Screen.ConstraintLayoutDetailScreen.route) {
+            MPConstraintLayoutScreen()
         }
 
     }

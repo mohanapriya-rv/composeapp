@@ -79,6 +79,11 @@ private fun MyRecyclerView(navController: NavController) {
 @Composable
 fun MyRecyclerViewContent(navController: NavController) {
     val recyclerviewList = remember { DataProvider.list }
+    /**
+     * lazy column -> will automatically handles the scrolling
+     * column -> won't automatically scroll we need to add modifier.vertical scroll
+     * TO enable smooth Scrolling
+     */
     LazyColumn(contentPadding = PaddingValues(horizontal = 10.dp, vertical = 8.dp)) {
         items(
             items = recyclerviewList,
@@ -88,6 +93,25 @@ fun MyRecyclerViewContent(navController: NavController) {
                 }
             })
     }
+
+    /**
+     * using item indexed we can pass list of string along with index and String
+     */
+//    LazyColumn() {
+//        itemsIndexed(listOf("this", "is", "my", "sample", "compose")) { index: Int, item: String ->
+//            Text(
+//                text = item,
+//                Modifier
+//                    .fillMaxWidth()
+//                    .padding(24.dp),
+//                fontSize = 20.sp,
+//                textDecoration = TextDecoration.None,
+//                textAlign = TextAlign.Start,
+//                fontWeight = FontWeight.ExtraLight
+//            )
+//
+//        }
+//    }
 }
 
 fun redirectToCorrespondingScreen(navController: NavController, id: Int) {
@@ -95,6 +119,8 @@ fun redirectToCorrespondingScreen(navController: NavController, id: Int) {
         navController.navigate(Screen.TextStylesScreen.route)
     } else if (id == 2) {
         navController.navigate(Screen.StateDetailScreen.route)
+    } else if (id == 3) {
+        navController.navigate(Screen.ConstraintLayoutDetailScreen.route)
     }
 }
 

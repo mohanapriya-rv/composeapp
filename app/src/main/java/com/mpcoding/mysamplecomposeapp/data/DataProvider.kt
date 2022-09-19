@@ -17,7 +17,7 @@ object DataProvider {
             "https://cdn.fundsindia.com/prelogin/mf-home-header-icon.png"
         ),
         MySampleModel(
-            "sampleString3",
+            "constraintLayout",
             3,
             "https://cdn.fundsindia.com/prelogin/mf-home-header-icon.png"
         ),
