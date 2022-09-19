@@ -1,6 +1,16 @@
 package com.mpcoding.mysamplecomposeapp.scene
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import kotlin.random.Random
 
 /**
  * created by Mohanapriya R on 16-09-2022
@@ -11,5 +21,66 @@ import androidx.compose.runtime.Composable
  */
 @Composable
 fun MPComposeStatesScreen() {
+    Column(modifier = Modifier.fillMaxSize()) {
+        val color = remember {
+            mutableStateOf(Color.Yellow)
+        }
+        /**
+         *declare a  state as common for both box and column
+         */
+        Box(
+            modifier = Modifier
+                .weight(0.5f)
+                .fillMaxSize()
+                .background(color.value)
 
+        )
+        ColorBox(
+            modifier = Modifier
+                .weight(0.5f)
+                .fillMaxSize()
+        ) {
+            color.value = it
+        }
+    }
+}
+//
+///**
+// *simple compose function to test
+// */
+//@Composable
+//fun ColorBox(modifier: Modifier = Modifier) {
+//    val color = remember {
+//        mutableStateOf(Color.Yellow)
+//    }
+//    Box(modifier = modifier
+//        .background(color.value)
+//        .clickable {
+//            color.value = Color(
+//                Random.nextFloat(),
+//                Random.nextFloat(),
+//                Random.nextFloat(),
+//                1f
+//            )
+//        }) {
+//
+//    }
+//}
+
+@Composable
+fun ColorBox(modifier: Modifier = Modifier, updateColor: (Color) -> Unit) {
+    Box(modifier = modifier
+        .background(Color.Green)
+        .clickable {
+            updateColor(
+                Color(
+                    Random.nextFloat(),
+                    Random.nextFloat(),
+                    Random.nextFloat(),
+                    1f
+                )
+            )
+        }) {
+
+    }
 }
