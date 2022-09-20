@@ -11,6 +11,7 @@ import com.mpcoding.mysamplecomposeapp.scene.MPComposeStatesScreen
 import com.mpcoding.mysamplecomposeapp.scene.MPConstraintLayoutScreen
 import com.mpcoding.mysamplecomposeapp.scene.MPListScreen
 import com.mpcoding.mysamplecomposeapp.scene.MPTextStylesScreen
+import com.mpcoding.mysamplecomposeapp.scene.effectHandlers.MPEffectHandlers
 
 @Composable
 fun Navigation() {
@@ -41,11 +42,14 @@ fun Navigation() {
             MPComposeStatesScreen()
         }
 
+        composable(route = Screen.ConstraintLayoutDetailScreen.route) {
+            MPConstraintLayoutScreen()
+        }
         /**
          * for constraint layout
          */
-        composable(route = Screen.ConstraintLayoutDetailScreen.route) {
-            MPConstraintLayoutScreen()
+        composable(route = Screen.EffectHandlers.route) {
+            MPEffectHandlers()
         }
 
     }

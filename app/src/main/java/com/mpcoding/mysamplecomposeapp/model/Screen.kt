@@ -9,6 +9,7 @@ sealed class Screen(val route: String) {
     object TextStylesScreen : Screen("text_style_screen")
     object StateDetailScreen : Screen("state_detail_screen")
     object ConstraintLayoutDetailScreen : Screen("constraint_layout_screen")
+    object EffectHandlers:Screen("effect_handlers_screen")
 
     fun withArgs(vararg args: String): String {
         return buildString {

@@ -115,12 +115,19 @@ fun MyRecyclerViewContent(navController: NavController) {
 }
 
 fun redirectToCorrespondingScreen(navController: NavController, id: Int) {
-    if (id == 1) {
-        navController.navigate(Screen.TextStylesScreen.route)
-    } else if (id == 2) {
-        navController.navigate(Screen.StateDetailScreen.route)
-    } else if (id == 3) {
-        navController.navigate(Screen.ConstraintLayoutDetailScreen.route)
+    when (id) {
+        1 -> {
+            navController.navigate(Screen.TextStylesScreen.route)
+        }
+        2 -> {
+            navController.navigate(Screen.StateDetailScreen.route)
+        }
+        3 -> {
+            navController.navigate(Screen.ConstraintLayoutDetailScreen.route)
+        }
+        4 -> {
+            navController.navigate(Screen.EffectHandlers.route)
+        }
     }
 }
 

@@ -22,7 +22,7 @@ object DataProvider {
             "https://cdn.fundsindia.com/prelogin/mf-home-header-icon.png"
         ),
         MySampleModel(
-            "sampleString4",
+            "effectHandlers",
             4,
             "https://cdn.fundsindia.com/prelogin/mf-home-header-icon.png"
         ),
