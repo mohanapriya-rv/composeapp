@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 /**
- * created by mohana
+ * created by mohanapriya
  */
 class LaunchedEffectViewModel : ViewModel() {
     fun getData() {
