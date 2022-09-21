@@ -12,13 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -47,23 +45,24 @@ fun MPListScreen(navController: NavController) {
 @Composable
 fun MyImageView() {
     Image(
-        painterResource(id = R.drawable.food), modifier = Modifier
-            .height(150.dp)
+        painterResource(id = R.drawable.imagedemo), modifier = Modifier
+            .height(120.dp)
+            .fillMaxWidth()
             .padding(10.dp),
         contentDescription = "",
-        contentScale = ContentScale.Crop
+        contentScale = ContentScale.Fit
     )
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
-            text = "Happy Meal", style = TextStyle(
-                color = Color.Green, fontSize = TextUnit.Unspecified
+            text = stringResource(R.string.my_first_compose_app),
+            style = TextStyle(
+                color = Color.Black,
+                fontSize = 22.sp
             )
         )
-        Spacer(modifier = Modifier.padding(top = 10.dp))
-        Text(text = "1200 Calories ")
-        Spacer(modifier = Modifier.padding(top = 10.dp))
-        Text(text = "Rupee 10.0")
-        Spacer(modifier = Modifier.padding(top = 10.dp))
+        Spacer(modifier = Modifier.padding(top = 5.dp))
+        Text(text = stringResource(R.string.sample_text))
+        Spacer(modifier = Modifier.padding(top = 5.dp))
 
     }
 }
@@ -139,28 +138,27 @@ fun RecyclerViewItem(item: MySampleModel, link: () -> Unit) {
         Surface(onClick = {
             link()
         }) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .padding(10.dp),
+                shape = RoundedCornerShape(15.dp), elevation = 5.dp
+            ) {
+                Box(modifier = Modifier.padding(20.dp)) {
+                    Column {
+                        Text(text = item.name, style = MaterialTheme.typography.h6)
 
-            Column {
-                val painter = painterResource(id = R.drawable.images)
-                val description = "Sample compose project"
-                val title = "my first compose application"
-                Box(
-                    modifier = Modifier.fillMaxSize(0.7f)
-                ) {
-                    ImageCard(painter, title, description)
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = stringResource(id = R.string.view_detail),
+                            style = MaterialTheme.typography.h4,
+                            fontSize = 20.sp
+                        )
+
+                        Spacer(modifier = Modifier.height(4.dp))
+                    }
                 }
-
-                Text(text = item.name, style = MaterialTheme.typography.h6)
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Text(
-                    text = "VIEW DETAIL",
-                    style = MaterialTheme.typography.caption,
-                    modifier = Modifier.align(Alignment.Start)
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
             }
         }
     }
@@ -172,7 +170,6 @@ fun RecyclerViewItem(item: MySampleModel, link: () -> Unit) {
  */
 @Composable
 fun ImageCard(
-    painter: Painter,
     title: String,
     contentDescription: String,
     modifier: Modifier = Modifier
@@ -181,34 +178,33 @@ fun ImageCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .fillMaxHeight()
+            .height(40.dp)
             .padding(10.dp),
         shape = RoundedCornerShape(15.dp),
-        elevation = 5.dp
     ) {
 
         Box(modifier = Modifier.height(200.dp)) {
 
-            Image(
-                painter = painter,
-                contentDescription = contentDescription,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxHeight()
-            )
+//            Image(
+//                painter = painter,
+//                contentDescription = contentDescription,
+//                contentScale = ContentScale.Crop,
+//                modifier = Modifier.fillMaxHeight()
+//            )
 
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Transparent,
-                                Color.Black
-                            ),
-                            startY = 90f
-                        )
-                    )
-            )
+//            Box(
+//                modifier = Modifier
+//                    .fillMaxSize()
+//                    .background(
+//                        Brush.verticalGradient(
+//                            colors = listOf(
+//                                Color.Transparent,
+//                                Color.Black
+//                            ),
+//                            startY = 90f
+//                        )
+//                    )
+//            )
 
             Box(
                 modifier = Modifier
