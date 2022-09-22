@@ -30,13 +30,12 @@ import androidx.compose.ui.unit.sp
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MPTextStylesScreen(name: String?) {
-    Box(Modifier.padding(20.dp)) {
+    Box {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
-                .border(5.dp, Color.DarkGray)
-                .padding(5.dp),
+                .border(5.dp, Color.DarkGray),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {

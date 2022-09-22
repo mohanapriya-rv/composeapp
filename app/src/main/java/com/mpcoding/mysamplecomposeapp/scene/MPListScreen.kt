@@ -23,7 +23,6 @@ import androidx.navigation.NavController
 import com.mpcoding.mysamplecomposeapp.R
 import com.mpcoding.mysamplecomposeapp.data.DataProvider
 import com.mpcoding.mysamplecomposeapp.data.MySampleModel
-import com.mpcoding.mysamplecomposeapp.model.Screen
 
 
 /**
@@ -34,7 +33,7 @@ fun MPListScreen(navController: NavController, doNavigate: (MySampleModel) -> Un
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(15.dp)
+            .padding(PaddingValues(15.dp, 75.dp, 15.dp, 15.dp))
             .background(color = Color(0xFFF2F2f2))
     ) {
         MyImageView()
@@ -49,8 +48,7 @@ fun MyImageView() {
     Image(
         painterResource(id = R.drawable.imagedemo), modifier = Modifier
             .height(120.dp)
-            .fillMaxWidth()
-            .padding(10.dp),
+            .fillMaxWidth(),
         contentDescription = "",
         contentScale = ContentScale.Fit
     )

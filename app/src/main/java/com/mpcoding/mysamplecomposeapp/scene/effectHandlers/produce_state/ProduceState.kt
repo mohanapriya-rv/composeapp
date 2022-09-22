@@ -1,10 +1,14 @@
 package com.mpcoding.mysamplecomposeapp.scene.effectHandlers.produce_state
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
 /**
@@ -35,15 +39,19 @@ fun DerivedStateOfDemo() {
     val mySampletext by derivedStateOf {
         " my simple text is $counter"
     }
-    Button(modifier = Modifier.fillMaxSize(), onClick = {
-        counter++
-    }) {
-        /**
-         *after every recomposition this sample text will to be concanated every time
-         * whatever operations will be recomposed
-         * to prevent that we need to use derived stateof demo
-         *
-         */
-        Text(mySampletext)
+    Box(modifier = Modifier.padding(PaddingValues(15.dp, 55.dp, 15.dp, 15.dp))) {
+        Button(modifier = Modifier
+            .fillMaxSize()
+            .padding(), onClick = {
+            counter++
+        }) {
+            /**
+             *after every recomposition this sample text will to be concanated every time
+             * whatever operations will be recomposed
+             * to prevent that we need to use derived stateof demo
+             *
+             */
+            Text(mySampletext)
+        }
     }
 }

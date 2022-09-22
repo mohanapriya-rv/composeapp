@@ -2,10 +2,7 @@ package com.mpcoding.mysamplecomposeapp.scene
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,9 +21,7 @@ import kotlin.random.Random
 @Composable
 fun MPComposeStatesScreen() {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(70.dp)
+        modifier = Modifier.padding(PaddingValues(15.dp, 55.dp, 15.dp, 15.dp))
     ) {
         val color = remember {
             mutableStateOf(Color.Yellow)
