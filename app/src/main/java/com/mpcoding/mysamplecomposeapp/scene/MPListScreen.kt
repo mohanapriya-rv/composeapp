@@ -30,7 +30,7 @@ import com.mpcoding.mysamplecomposeapp.model.Screen
  * created by Mohanapriya R on 16-09-2022
  */
 @Composable
-fun MPListScreen(navController: NavController) {
+fun MPListScreen(navController: NavController, doNavigate: (MySampleModel) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -38,7 +38,9 @@ fun MPListScreen(navController: NavController) {
             .background(color = Color(0xFFF2F2f2))
     ) {
         MyImageView()
-        MyRecyclerView(navController)
+        MyRecyclerView(navController) {
+            doNavigate(it)
+        }
     }
 }
 
@@ -69,14 +71,19 @@ fun MyImageView() {
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-private fun MyRecyclerView(navController: NavController) {
+private fun MyRecyclerView(navController: NavController, doNavigate: (MySampleModel) -> Unit) {
     Scaffold(content = {
-        MyRecyclerViewContent(navController)
+        MyRecyclerViewContent(navController = navController, doNavigate = {
+            doNavigate(it)
+        })
     })
 }
 
 @Composable
-fun MyRecyclerViewContent(navController: NavController) {
+fun MyRecyclerViewContent(
+    navController: NavController,
+    doNavigate: (MySampleModel) -> Unit,
+) {
     val recyclerviewList = remember { DataProvider.list }
     /**
      * lazy column -> will automatically handles the scrolling
@@ -88,7 +95,8 @@ fun MyRecyclerViewContent(navController: NavController) {
             items = recyclerviewList,
             itemContent = {
                 RecyclerViewItem(item = it) {
-                    redirectToCorrespondingScreen(navController, it.id)
+                    doNavigate(it)
+//                    redirectToCorrespondingScreen(navController, it.id)
                 }
             })
     }
@@ -113,30 +121,13 @@ fun MyRecyclerViewContent(navController: NavController) {
 //    }
 }
 
-fun redirectToCorrespondingScreen(navController: NavController, id: Int) {
-    when (id) {
-        1 -> {
-            navController.navigate(Screen.TextStylesScreen.route)
-        }
-        2 -> {
-            navController.navigate(Screen.StateDetailScreen.route)
-        }
-        3 -> {
-            navController.navigate(Screen.ConstraintLayoutDetailScreen.route)
-        }
-        4 -> {
-            navController.navigate(Screen.EffectHandlers.route)
-        }
-    }
-}
-
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun RecyclerViewItem(item: MySampleModel, link: () -> Unit) {
+fun RecyclerViewItem(item: MySampleModel, doNavigate: () -> Unit) {
     Row {
         Surface(onClick = {
-            link()
+            doNavigate()
         }) {
             Card(
                 modifier = Modifier

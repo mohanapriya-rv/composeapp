@@ -1,11 +1,13 @@
 package com.mpcoding.mysamplecomposeapp.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.mpcoding.mysamplecomposeapp.data.MySampleModel
 import com.mpcoding.mysamplecomposeapp.model.Screen
 import com.mpcoding.mysamplecomposeapp.scene.MPComposeStatesScreen
 import com.mpcoding.mysamplecomposeapp.scene.MPConstraintLayoutScreen
@@ -17,14 +19,18 @@ import com.mpcoding.mysamplecomposeapp.scene.effectHandlers.MPEffectHandlers
  * created by mohanapriya  R
  */
 @Composable
-fun Navigation() {
+fun Navigation(doNavigate: (MySampleModel, NavHostController) -> Unit) {
     val navController = rememberNavController()
+    /**
+     * it will be the start destination of my navcontroller
+     */
     NavHost(navController = navController, startDestination = Screen.ListScreen.route) {
 
         composable(route = Screen.ListScreen.route) {
-            MPListScreen(navController = navController)
+            MPListScreen(navController = navController) {
+                doNavigate(it, navController)
+            }
         }
-
 
         /**
          * name will be argument to be passed
